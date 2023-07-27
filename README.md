@@ -1,15 +1,30 @@
 # tar.ts
 
-ブラウザ上で tar ファイルを作成するクラス [Tar](./tar.ts)
+Create .tar file via [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) object.
 
-## Example
 
-使い方の例は [example/index.ts](./example/index.ts) に記載の通り。
+## How to use
 
-実際にブラウザで読み込んでダウンロード処理を走らせるためには、以下の手順が必要:
+```ts
+import Tar from "./tar"
+
+filenames = ["a.png"]
+// source url to fetch
+src = ["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACWCAYAAABkW7XSAAAAAXNSR0IArs4c6QAABGJJREFUeF7t1AEJAAAMAsHZv/RyPNwSyDncOQIECEQEFskpJgECBM5geQICBDICBitTlaAECBgsP0CAQEbAYGWqEpQAAYPlBwgQyAgYrExVghIgYLD8AAECGQGDlalKUAIEDJYfIEAgI2CwMlUJSoCAwfIDBAhkBAxWpipBCRAwWH6AAIGMgMHKVCUoAQIGyw8QIJARMFiZqgQlQMBg+QECBDICBitTlaAECBgsP0CAQEbAYGWqEpQAgQdWMQCX4yW9owAAAABJRU5ErkJggg=="]
+
+const tarBlob: Blob = await Tar.create(filenames, src)
+```
+
+More detailed example available on [example/](./example) directory.
 
 1. `npm run example`
-2. `example/` でサーバーを立てる  
-    例: `cd example/ && python -m http.server`
-3. ブラウザからサーバーの index.html にアクセスすると、test.txt と a.npy を含んだ tar ファイルがダウンロードされる
+2. Launch web server on `example/`.
+    e.g. `cd example/ && python -m http.server 8080`
+3. Access http://localhost:8080
+4. The tar file which contains `test.txt` and `a.npy` will be downloaded.
 
+
+## License
+
+These codes are licensed under CC0.  
+http://creativecommons.org/publicdomain/zero/1.0/deed
